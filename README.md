@@ -1,7 +1,7 @@
 # VIOLET OS
 
 ## Sceenshot
-![screen](./screen-shot.png)
+![The color is very ordinary, but the cat is very cute](./screen-shot.png)
 
 🎨 This is my violet color theme for **i3 window manager,picom, polybar, rofi, kitty**
 
