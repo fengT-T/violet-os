@@ -148,16 +148,16 @@ bindsym $mod+Shift+0 move container to workspace number $ws10
 
 bindsym $mod+p move workspace to output right
 
-workspace $ws1 output DP-0
-workspace $ws2 output DP-4
-workspace $ws3 output DP-0
-workspace $ws4 output DP-4
-workspace $ws5 output DP-0
-workspace $ws6 output DP-4
-workspace $ws7 output DP-0
-workspace $ws8 output DP-4
-workspace $ws9 output DP-0
-workspace $ws10 output DP-4
+workspace $ws1 output DP-4
+workspace $ws2 output DP-0
+workspace $ws3 output DP-4
+workspace $ws4 output DP-0
+workspace $ws5 output DP-4
+workspace $ws6 output DP-0
+workspace $ws7 output DP-4
+workspace $ws8 output DP-0
+workspace $ws9 output DP-4
+workspace $ws10 output DP-0
 
 set $monitor_left DP-0
 set $monitor_right DP-4
@@ -222,9 +222,46 @@ default_border          none
 
 gaps inner 15
 gaps top 20
+<<<<<<< HEAD
 
 for_window [class="mpv"] floating enable
 
 exec --no-startup-id ~/.config/i3/wallpaper.sh &
 exec --no-startup-id polybar bar1
 exec --no-startup-id polybar bar2
+=======
+for_window [class="cocomusic"] floating enable
+for_window [class="Pcmanfm"] floating enable
+for_window [class="mpv"] floating enable
+for_window [class="imv"] floating enable
+for_window [class="Gnome-screenshot"] floating enable
+for_window [class="Gcolor3"] floating enable
+for_window [class="Nvidia-settings"] floating enable
+for_window [class="netease-cloud-music"] floating enable
+for_window [class="Eog"] floating enable
+for_window [class="wemeetapp"] floating enable
+
+exec --no-startup-id ~/.screenlayout/default.sh
+
+exec --no-startup-id clash -d Documents/clash
+
+exec --no-startup-id ~/.config/i3/wallpaper.sh &
+
+exec --no-startup-id sleep 8 && picom --experimental-backends
+
+exec --no-startup-id nm-applet
+
+exec --no-startup-id sleep 6 && fcitx5
+
+exec --no-startup-id serve -l 9900 /home/feng/software/clash-dashboard/dist
+
+exec --no-startup-id polybar bar1
+exec --no-startup-id polybar bar2
+
+exec --no-startup-id aria2c
+
+exec --no-startup-id /usr/lib/geoclue-2.0/demos/agent
+
+exec --no-startup-id sleep 6 && volctl
+# exec --no-startup-id /home/feng/bin/alarm_data.sh
+>>>>>>> 93a50fb (🎨 more theme)

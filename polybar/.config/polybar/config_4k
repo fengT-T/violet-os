@@ -1,0 +1,564 @@
+[bar/bar1]
+monitor = DP-4
+background = #ffffff
+foreground = #495057
+width                    = 99%
+height                   = 30
+radius                   = 16
+line-size                = 0
+bottom                   = false
+border-bottom-size       = 0
+padding-left             = 0
+padding-right            = 0
+module-margin-left       = 2
+module-margin-right      = 0
+
+fixed-center = true
+font-0 = "Source Code Pro Medium:size=15;3"
+font-1 = "Font Awesome 6 Free Regular:size=15;3"
+font-2 = "Font Awesome 6 Free Solid:size=15;3"
+font-3 = "Font Awesome 6 Brands Regular:size=15;3"
+font-4 = "Source Han Sans Medium:size=15;3"
+
+modules-left = i3 title
+modules-center = date
+modules-right = wired-network pulseaudio cpu temperature memory
+
+;left - center - right - none
+tray-position = right
+tray-maxsize = 50
+tray-detached = false
+;tray-transparent = true
+tray-padding = 15
+tray-scale = 1.0
+
+override-redirect = true
+wm-restack = i3
+offset-x = 0.5%
+offset-y = 6
+
+padding = 0
+
+wm-name = bar
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+[bar/bar2]
+monitor = DP-0
+background = #ffffff
+foreground = #495057
+width                    = 99%
+height                   = 30
+radius                   = 16
+line-size                = 0
+bottom                   = false
+border-bottom-size       = 0
+padding-left             = 0
+padding-right            = 3
+module-margin-left       = 2
+module-margin-right      = 0
+
+fixed-center = true
+font-0 = "Source Code Pro Medium:size=15;3"
+font-1 = "Font Awesome 6 Free Regular:size=15;3"
+font-2 = "Font Awesome 6 Free Solid:size=15;3"
+font-3 = "Font Awesome 6 Brands Regular:size=15;3"
+font-4 = "Source Han Sans Medium:size=15;3"
+
+modules-left = i3 title
+modules-center = 
+modules-right = player-mpris-simple  filesystem 
+
+;left - center - right - none
+;tray-position = none
+;tray-maxsize = 30
+;tray-detached = false
+;tray-transparent = true
+;tray-padding = 15
+;tray-scale = 1.0
+
+override-redirect = true
+wm-restack = i3
+offset-x = 0.5%
+offset-y = 6
+
+padding = 0
+
+wm-name = bar
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+[module/title]
+type = internal/xwindow
+label-maxlen = 50
+
+[module/filesystem]
+type = internal/fs
+
+; Mountpoints to display
+mount-0 = /
+mount-1 = /mnt/data_1
+mount-2 = /mnt/data_1
+
+; Seconds to sleep between updates
+; Default: 30
+interval = 10
+
+; Display fixed precision values
+; Default: false
+fixed-values = true
+
+; Spacing between entries
+; Default: 2
+spacing = 4
+
+[module/date]
+type = internal/date
+; Seconds to sleep between updates
+; Default: 1.0
+interval = 60
+; See "https://en.cppreference.com/w/cpp/io/manip/put_time" for details on how to format the date string
+; NOTE: if you want to use syntax tags here you need to use %%{...}
+date = %A, %Y-%m-%d%
+; Optional time format
+time = %I:%M %p
+; Available tokens:
+;   %date%
+;   %time%
+; Default: %date%
+label = " %date%  %time%"
+; if `date-alt` or `time-alt` is defined, clicking
+; the module will toggle between formats
+date-alt = %A, %d %B %Y
+time-alt = %H:%M:%S
+
+[module/cpu]
+type = internal/cpu
+
+; Seconds to sleep between updates
+; Default: 1
+interval = 1
+; Available tags:
+;   <label> (default)
+;   <bar-load>
+;   <ramp-load>
+;   <ramp-coreload>
+format = <label> <ramp-load>
+
+; Available tokens:
+;   %percentage% (default) - total cpu load averaged over all cores
+;   %percentage-sum% - Cumulative load on all cores
+;   %percentage-cores% - load percentage for each core
+;   %percentage-core[1-9]% - load percentage for specific core
+label =  %percentage%%
+
+; Spacing between individual per-core ramps
+ramp-load-0 = ▁
+ramp-load-1 = ▂
+ramp-load-2 = ▃
+ramp-load-3 = ▄
+ramp-load-4 = ▅
+ramp-load-5 = ▆
+ramp-load-6 = ▇
+ramp-load-7 = █
+; colors for each ramp
+ramp-load-0-foreground = #9d7eeb
+ramp-load-1-foreground = #9d7eeb
+ramp-load-2-foreground = #9d7eeb
+ramp-load-3-foreground = #69db7c
+ramp-load-4-foreground = #69db7c
+ramp-load-5-foreground = #fcc419
+ramp-load-6-foreground = #ff6b6b
+ramp-load-7-foreground = #ff6b6b
+
+[module/memory]
+type = internal/memory
+
+; Seconds to sleep between updates
+; Default: 1
+interval = 3
+; Available tags:
+;   <label> (default)
+;   <bar-used>
+;   <bar-free>
+;   <ramp-used>
+;   <ramp-free>
+;   <bar-swap-used>
+;   <bar-swap-free>
+;   <ramp-swap-used>
+;   <ramp-swap-free>
+format = <label> <bar-used>
+
+; Available tokens:
+;   %percentage_used% (default)
+;   %percentage_free%
+;   %gb_used%
+;   %gb_free%
+;   %gb_total%
+;   %mb_used%
+;   %mb_free%
+;   %mb_total%
+;   %percentage_swap_used%
+;   %percentage_swap_free%
+;   %mb_swap_total%
+;   %mb_swap_free%
+;   %mb_swap_used%
+;   %gb_swap_total%
+;   %gb_swap_free%
+;   %gb_swap_used%
+
+label =  %gb_used%
+
+; Only applies if <bar-used> is used
+bar-used-indicator = 
+bar-used-width = 10
+bar-used-foreground-0 = #9d7eeb
+bar-used-foreground-1 = #69db7c
+bar-used-foreground-2 = #fcc419
+bar-used-foreground-3 = #ff6b6b
+bar-used-fill = ▐
+bar-used-empty = ▐
+bar-used-empty-foreground = #868e96
+
+; Only applies if <ramp-used> is used
+ramp-used-0 = ▁
+ramp-used-1 = ▂
+ramp-used-2 = ▃
+ramp-used-3 = ▄
+ramp-used-4 = ▅
+ramp-used-5 = ▆
+ramp-used-6 = ▇
+ramp-used-7 = █
+
+; Only applies if <ramp-free> is used
+ramp-free-0 = ▁
+ramp-free-1 = ▂
+ramp-free-2 = ▃
+ramp-free-3 = ▄
+ramp-free-4 = ▅
+ramp-free-5 = ▆
+ramp-free-6 = ▇
+ramp-free-7 = █
+
+
+[module/pulseaudio]
+type = internal/pulseaudio
+
+; Sink to be used, if it exists (find using `pacmd list-sinks`, name field)
+; If not, uses default sink
+sink = alsa_output.pci-0000_01_00.1.hdmi-stereo
+
+; Use PA_VOLUME_UI_MAX (~153%) if true, or PA_VOLUME_NORM (100%) if false
+; Default: true
+use-ui-max = true
+
+; Interval for volume increase/decrease (in percent points)
+; Default: 5
+interval = 5
+; Available tags:
+;   <label-volume> (default)
+;   <ramp-volume>
+;   <bar-volume>
+format-volume = <ramp-volume> <label-volume>
+
+; Available tags:
+;   <label-muted> (default)
+;   <ramp-volume>
+;   <bar-volume>
+;format-muted = <label-muted>
+
+; Available tokens:
+;   %percentage% (default)
+;   %decibels%
+;label-volume = %percentage%%
+
+; Available tokens:
+;   %percentage% (default)
+;   %decibels%
+label-muted =  muted
+label-muted-foreground = #666
+
+; Only applies if <ramp-volume> is used
+ramp-volume-0 = 
+ramp-volume-1 = 
+ramp-volume-2 = 
+
+; Right and Middle click
+click-right = pavucontrol
+; click-middle = 
+
+[module/wired-network]
+type = internal/network
+interface = enp42s0
+; Seconds to sleep between updates
+; Default: 1
+interval = 3.0
+
+; Test connectivity every Nth update
+; A value of 0 disables the feature
+; NOTE: Experimental (needs more testing)
+; Default: 0
+;ping-interval = 3
+
+; @deprecated: Define min width using token specifiers (%downspeed:min% and %upspeed:min%)
+; Minimum output width of upload/download rate
+; Default: 3
+;udspeed-minwidth = 2
+
+; Accumulate values from all interfaces
+; when querying for up/downspeed rate
+; Default: false
+accumulate-stats = true
+
+; Consider an `UNKNOWN` interface state as up.
+; Some devices like USB network adapters have 
+; an unknown state, even when they're running
+; Default: false
+unknown-as-up = true
+
+; Available tags:
+;   <label-connected> (default)
+;   <ramp-signal>
+format-connected =  <label-connected>
+
+; Available tags:
+;   <label-disconnected> (default)
+; format-disconnected = <label-disconnected>
+
+; Available tags:
+;   <label-connected> (default)
+;   <label-packetloss>
+;   <animation-packetloss>
+; format-packetloss = <animation-packetloss> <label-connected>
+
+; All labels support the following tokens:
+;   %ifname%    [wireless+wired]
+;   %local_ip%  [wireless+wired]
+;   %local_ip6% [wireless+wired]
+;   %essid%     [wireless]
+;   %signal%    [wireless]
+;   %upspeed%   [wireless+wired]
+;   %downspeed% [wireless+wired]
+;   %linkspeed% [wired]
+
+; Default: %ifname% %local_ip%
+label-connected =  %downspeed:2%  %upspeed:2%
+; label-connected-foreground = #9d7eeb
+
+; Default: (none)
+; label-disconnected = not connected
+; label-disconnected-foreground = #66ffffff
+
+; Default: (none)
+; label-packetloss = %ifname%
+;label-packetloss-foreground = #eefafafa
+
+; Only applies if <ramp-signal> is used
+; ramp-signal-0 = 😱
+; ramp-signal-1 = 😠
+; ramp-signal-2 = 😒
+; ramp-signal-3 = 😊
+; ramp-signal-4 = 😃
+; ramp-signal-5 = 😈
+
+; Only applies if <animation-packetloss> is used
+; animation-packetloss-0 = ⚠
+; animation-packetloss-0-foreground = #ffa64c
+; animation-packetloss-1 = 📶
+; animation-packetloss-1-foreground = #000000/s
+; Framerate in milliseconds
+; animation-packetloss-framerate = 500
+
+[module/temperature]
+type = internal/temperature
+
+; Seconds to sleep between updates
+; Default: 1
+interval = 1
+
+; Thermal zone to use
+; To list all the zone types, run 
+; $ for i in /sys/class/thermal/thermal_zone*; do echo "$i: $(<$i/type)"; done
+; Default: 0
+thermal-zone = 1
+
+; Full path of temperature sysfs path
+; Use `sensors` to find preferred temperature source, then run
+; $ for i in /sys/class/hwmon/hwmon*/temp*_input; do echo "$(<$(dirname $i)/name): $(cat ${i%_*}_label 2>/dev/null || echo $(basename ${i%_*})) $(readlink -f $i)"; done
+; to find path to desired file
+; Default reverts to thermal zone setting
+hwmon-path = /sys/devices/pci0000:00/0000:00:18.3/hwmon/hwmon2/temp1_input
+
+; Base temperature for where to start the ramp (in degrees celsius)
+; Default: 0
+base-temperature = 30
+
+; Threshold temperature to display warning label (in degrees celsius)
+; Default: 80
+warn-temperature = 80
+; Whether or not to show units next to the temperature tokens (°C, °F)
+; Default: true
+units = false
+
+; Available tags:
+;   <label> (default)
+;   <ramp>
+format = <ramp> <label>
+
+; Available tags:
+;   <label-warn> (default)
+;   <ramp>
+format-warn = <ramp> <label-warn>
+
+; Available tokens:
+;   %temperature% (deprecated)
+;   %temperature-c%   (default, temperature in °C)
+;   %temperature-f%   (temperature in °F)
+label = %temperature-c%
+
+; Available tokens:
+;   %temperature% (deprecated)
+;   %temperature-c%   (default, temperature in °C)
+;   %temperature-f%   (temperature in °F)
+label-warn =  %temperature-c%
+label-warn-foreground = #ff6b6b
+
+; Requires the <ramp> tag
+; The icon selection will range from `base-temperature` to `warn-temperature`,
+; temperatures at and above `warn-temperature` will use the last icon
+; and temperatures at and below `base-temperature` will use `ramp-0`. 
+; All other icons are distributed evenly between the two temperatures.
+ramp-0 = 
+ramp-1 = 
+ramp-2 = 
+; ramp-foreground = #55
+
+[module/xkeyboard]
+type = internal/xkeyboard
+
+[module/i3]
+type = internal/i3
+
+; Only show workspaces defined on the same output as the bar
+;
+; Useful if you want to show monitor specific workspaces
+; on different bars
+;
+; Default: false
+pin-workspaces = true
+
+; This will split the workspace name on ':'
+; Default: false
+strip-wsnumbers = true
+
+; Sort the workspaces by index instead of the default
+; sorting that groups the workspaces by output
+; Default: false
+index-sort = true
+
+; Create click handler used to focus workspace
+; Default: true
+enable-click = true
+
+; Create scroll handlers used to cycle workspaces
+; Default: true
+enable-scroll = true
+
+; Wrap around when reaching the first/last workspace
+; Default: true
+wrapping-scroll = true
+
+; Set the scroll cycle direction 
+; Default: true
+reverse-scroll = true
+
+; Use fuzzy (partial) matching on labels when assigning 
+; icons to workspaces
+; Example: code;♚ will apply the icon to all workspaces 
+; containing 'code' in the label
+; Default: false
+fuzzy-match = false
+
+; ws-icon-[0-9]+ = <label>;<icon>
+; NOTE: The <label> needs to match the name of the i3 workspace
+; Neither <label> nor <icon> can contain a semicolon (;)
+ws-icon-0 = 1;
+ws-icon-1 = 2;
+ws-icon-2 = 3;
+ws-icon-3 = 4;
+ws-icon-4 = 5;
+ws-icon-5 = 6;
+ws-icon-6 = 7;
+ws-icon-7 = 8;
+ws-icon-8 = 9;
+ws-icon-default = 
+; NOTE: You cannot skip icons, e.g. to get a ws-icon-6
+; you must also define a ws-icon-5.
+; NOTE: Icon will be available as the %icon% token inside label-*
+
+; Available tags:
+;   <label-state> (default) - gets replaced with <label-(focused|unfocused|visible|urgent)>
+;   <label-mode> (default)
+format = <label-state> <label-mode>
+
+; Available tokens:
+;   %mode%
+; Default: %mode%
+label-mode = %mode%
+label-mode-padding = 2
+label-mode-background = #e60053
+
+; Available tokens:
+;   %name%
+;   %icon%
+;   %index%
+;   %output%
+; Default: %icon%  %name%
+label-focused = %icon%
+label-focused-foreground = #ffffff
+label-focused-background = #9d7eeb
+label-focused-underline = #fba922
+label-focused-padding = 4
+
+; Available tokens:
+;   %name%
+;   %icon%
+;   %index%
+;   %output%
+; Default: %icon%  %name%
+label-unfocused = %icon%
+label-unfocused-padding = 4
+
+; Available tokens:
+;   %name%
+;   %icon%
+;   %index%
+;   %output%
+; Default: %icon%  %name%
+label-visible = %icon%
+label-visible-underline = #555555
+label-visible-padding = 4
+
+; Available tokens:
+;   %name%
+;   %icon%
+;   %index%
+;   %output%
+; Default: %icon%  %name%
+label-urgent = %index%
+label-urgent-foreground = #000000
+label-urgent-background = #bd2c40
+label-urgent-padding = 4
+
+; Separator in between workspaces
+label-separator = |
+label-separator-padding = 1
+label-separator-foreground = #9d7eeb
+
+[module/player-mpris-simple]
+type = custom/script
+exec = ~/.config/polybar/polybar-scripts/polybar-scripts/player-mpris-simple/player-mpris-simple.sh
+interval = 3
+click-left = playerctl previous &
+click-right = playerctl next &
+click-middle = playerctl play-pause &
+label-maxlen = 35

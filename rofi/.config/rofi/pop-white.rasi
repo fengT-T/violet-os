@@ -8,6 +8,8 @@
     red:                         #ff8787;
     orange:                      #ffc078; 
     blue:                        #9d7eeb; 
+    background:                  #ffffff;   
+    foreground:                  #868e96;
 
     selected-normal-foreground:  @foreground;
     normal-foreground:           @foreground;
@@ -35,7 +37,6 @@ window {
     border:     0;
     text-color: @foreground;
     padding:    30;
-    text-color: @bordercolor;
     background-color: @background;
     width: 1000;
     font: "monaco 16";
