@@ -215,21 +215,14 @@ client.focused_inactive #CED4DA #ADB5BD #FFFFFF #484E50   #5F676A
 client.unfocused        #CED4DA #ADB5BD #343A40 #292D2E   #222222
 client.urgent           #CED4DA #E64980 #FFFFFF #A61E4D   #A61E4D
 client.placeholder      #CED4DA #7048E8 #FFFFFF #5F3DC4   #5F3DC4
-
 client.background       #FFFFFF
 
 default_border          none
+default_floating_border none
 
 gaps inner 15
 gaps top 20
-<<<<<<< HEAD
 
-for_window [class="mpv"] floating enable
-
-exec --no-startup-id ~/.config/i3/wallpaper.sh &
-exec --no-startup-id polybar bar1
-exec --no-startup-id polybar bar2
-=======
 for_window [class="cocomusic"] floating enable
 for_window [class="Pcmanfm"] floating enable
 for_window [class="mpv"] floating enable
@@ -240,6 +233,7 @@ for_window [class="Nvidia-settings"] floating enable
 for_window [class="netease-cloud-music"] floating enable
 for_window [class="Eog"] floating enable
 for_window [class="wemeetapp"] floating enable
+for_window [class="^.*"] border none
 
 exec --no-startup-id ~/.screenlayout/default.sh
 
@@ -247,7 +241,7 @@ exec --no-startup-id clash -d Documents/clash
 
 exec --no-startup-id ~/.config/i3/wallpaper.sh &
 
-exec --no-startup-id sleep 8 && picom --experimental-backends
+exec --no-startup-id sleep 8 && picom
 
 exec --no-startup-id nm-applet
 
@@ -264,4 +258,3 @@ exec --no-startup-id /usr/lib/geoclue-2.0/demos/agent
 
 exec --no-startup-id sleep 6 && volctl
 # exec --no-startup-id /home/feng/bin/alarm_data.sh
->>>>>>> 93a50fb (🎨 more theme)
